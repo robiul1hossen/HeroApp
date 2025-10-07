@@ -2,17 +2,18 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../../src/assets/logo.png";
 import { Factory, Github } from "lucide-react";
+import "./Navbar.css";
 
 const menuItem = (
   <>
     <NavLink to="/">
-      <li className="mr-6">Home</li>
+      <li className="">Home</li>
     </NavLink>
     <NavLink to="/apps">
-      <li className="mr-6">Apps</li>
+      <li className="">Apps</li>
     </NavLink>
     <NavLink to="installation">
-      <li className="mr-6">Installation</li>
+      <li className="">Installation</li>
     </NavLink>
   </>
 );
@@ -42,19 +43,16 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              {/* <li>Item 1</li>
-              <li>Parent</li>
-              <li>Item 3</li> */}
               {menuItem}
             </ul>
           </div>
           <Link to="/" className=" flex gap-2 items-center">
             <img className="w-[30px] h-[30px]" src={logo} alt="" />
-            <span> Hero.Io</span>
+            <span className="font-bold"> Hero.Io</span>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{menuItem}</ul>
+        <div className="navbar-center hidden lg:flex ">
+          <ul className="menu menu-horizontal gap-6 ">{menuItem}</ul>
         </div>
         <div className="navbar-end">
           <Link className="btn">

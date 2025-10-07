@@ -1,0 +1,9 @@
+a.active {
+  border-bottom: 2px black solid;
+  font-size: 700;
+}
+@media screen and (max-width: 1022px) {
+  a.active {
+    border: none;
+  }
+}
