@@ -1,26 +1,34 @@
 import { Download, Star, ThumbsUp } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
-import { appAddToDb } from "../../components/utility/storedApp";
+import { appAddToDb, appGetFromDb } from "../../components/utility/storedApp";
 import Swal from "sweetalert2";
 
 const AppDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
-  const [installed, setInstalled] = useState(false);
+  const [installed, setInstalled] = useState([]);
 
   const filteredData = data.find((app) => Number(app.id) === Number(id));
+
   const handleInstall = (id) => {
     Swal.fire({
       title: "App Installed!",
       text: "You clicked the button!",
       icon: "success",
     });
+
     appAddToDb(id);
-    setInstalled(true);
+
+    setInstalled((prev) => [...prev, id]);
   };
 
-  // console.log(data);
+  useEffect(() => {
+    const savedIds = appGetFromDb();
+    setInstalled(savedIds);
+  }, []);
+
+  const isInstalled = (id) => installed.includes(id);
   return (
     <div className="max-w-11/12 mx-auto">
       <div className="flex gap-10">
@@ -68,10 +76,10 @@ const AppDetails = () => {
             </div>
           </div>
           <button
-            disabled={installed}
+            disabled={isInstalled(filteredData.id)}
             onClick={() => handleInstall(filteredData.id)}
             className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
-            {installed ? "Installed" : "Install Now"}
+            {isInstalled(filteredData.id) ? "Installed" : "Install"}
           </button>
         </div>
       </div>

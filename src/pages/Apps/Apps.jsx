@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigation } from "react-router";
 import App from "../App/App";
 
 const Apps = () => {
   const data = useLoaderData();
+  const state = useNavigation();
   const [search, setSearch] = useState([]);
+  if (state.state === "loading") {
+    console.log("data loading");
+  } else {
+    console.log("data loaded");
+  }
 
   const handleChange = (e) => {
     const userInput = e.target.value.toLowerCase();

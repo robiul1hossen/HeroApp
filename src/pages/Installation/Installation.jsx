@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { abbreviateNumber } from "js-abbreviation-number";
+
 import { useLoaderData } from "react-router";
-import { appGetFromDb } from "../../components/utility/storedApp";
+import {
+  appGetFromDb,
+  appRemoveFromDb,
+} from "../../components/utility/storedApp";
 import { Download, Star } from "lucide-react";
 
 const Installation = () => {
   const data = useLoaderData();
   const [install, setInstall] = useState([]);
-  const [sort, setSort] = useState("");
-
   const handleSortAscending = () => {
     const sorted = [...install].sort((a, b) => a.downloads - b.downloads);
     setInstall(sorted);
@@ -16,6 +19,12 @@ const Installation = () => {
     const sorted = [...install].sort((b, a) => a.downloads - b.downloads);
     setInstall(sorted);
   };
+  const handleUninstall = (id) => {
+    appRemoveFromDb(id);
+    console.log("before log", install);
+    setInstall((prev) => prev.filter((app) => app.id !== id));
+    console.log("after log ", install);
+  };
 
   useEffect(() => {
     const storedId = appGetFromDb();
@@ -23,7 +32,6 @@ const Installation = () => {
     const installedApp = data.filter((app) => convertedId.includes(app.id));
     setInstall(installedApp);
   }, [data]);
-  console.log(install);
   return (
     <div className="max-w-11/12 mx-auto">
       <div className="text-center">
@@ -35,11 +43,11 @@ const Installation = () => {
         </p>
       </div>
       <div className="flex justify-between items-center">
-        <h2>{setInstall.length} Apps Installed</h2>
+        <h2>{install.length} Apps Installed</h2>
         {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
         {/* For TSX uncomment the commented types below */}
         <button
-          className="btn"
+          className="btn shadow-lg"
           popoverTarget="popover-1"
           style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
           Sort By Downloads
@@ -72,7 +80,7 @@ const Installation = () => {
                   </h2>
                   <div className="flex gap-5 items-center">
                     <p className="flex gap-1 items-center text-[#00D390] text-sm">
-                      <Download /> {app.downloads}
+                      <Download /> {abbreviateNumber(app.downloads, 1)}
                     </p>
                     <p className="text-[#FF8811] flex gap-1 text-sm">
                       <Star fill={`#FF8811`} /> {app.ratingAvg}
@@ -84,7 +92,9 @@ const Installation = () => {
                 </div>
               </div>
               <div>
-                <button className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer rounded-lg">
+                <button
+                  onClick={() => handleUninstall(app.id)}
+                  className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer rounded-lg">
                   Uninstall
                 </button>
               </div>

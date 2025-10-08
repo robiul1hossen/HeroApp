@@ -1,3 +1,4 @@
+import { abbreviateNumber } from "js-abbreviation-number";
 import { ArrowDown, Star } from "lucide-react";
 import { useNavigate } from "react-router";
 
@@ -19,7 +20,7 @@ const App = ({ app }) => {
       <p className="text-center font-medium text-xl my-4 ">{app.title}</p>
       <div className="flex justify-between items-center font-medium">
         <span className="flex gap-1 bg-[#f1f5e8] text-[#00D390] px-[10px] py-[6px] rounded-sm">
-          <ArrowDown /> {app.downloads}
+          <ArrowDown /> {abbreviateNumber(app.downloads, 1)}
         </span>
         <span className="flex gap-1 items-center">
           <Star className="fill-[#FF8811]" stroke="0" />

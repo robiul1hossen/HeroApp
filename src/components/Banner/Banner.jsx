@@ -1,6 +1,7 @@
 import hero from "../../assets/hero.png";
 import playStore from "../../assets/playStore.png";
 import appStore from "../../assets/appStore.png";
+import { Link } from "react-router";
 const Banner = () => {
   return (
     <div>
@@ -21,14 +22,19 @@ const Banner = () => {
             into digital experiences that truly make an impact.
           </p>
           <div className="flex gap-2 justify-center mb-10">
-            <button className="btn">
-              <img className="w-[30px] h-[30px]" src={playStore} alt="" />
-              <span>Play Store</span>
-            </button>
-            <button className="btn">
-              <img className="w-[30px] h-[30px]" src={appStore} alt="" />
-              <span>Play Store</span>
-            </button>
+            <Link to="https://play.google.com/store/apps">
+              <button className="btn">
+                <img className="w-[30px] h-[30px]" src={playStore} alt="" />
+                <span>Play Store</span>
+              </button>
+            </Link>
+
+            <Link to="https://www.apple.com/app-store/">
+              <button className="btn">
+                <img className="w-[30px] h-[30px]" src={appStore} alt="" />
+                <span>Play Store</span>
+              </button>
+            </Link>
           </div>
         </div>
         <img className="mx-auto w-1/2" src={hero} alt="" />

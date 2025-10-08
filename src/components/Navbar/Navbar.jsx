@@ -55,7 +55,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal gap-6 ">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <Link className="btn">
+          <Link className="btn" to="https://github.com/robiul1hossen">
             <Github className="" /> Contribute
           </Link>
         </div>

@@ -15,8 +15,14 @@ const appAddToDb = (id) => {
     alert("app already exist");
   } else {
     savedIds.push(id);
-    const newId = JSON.stringify(savedIds);
-    localStorage.setItem("appId", newId);
+    // const newId = JSON.stringify(savedIds);
+    localStorage.setItem("appId", JSON.stringify(savedIds));
   }
 };
-export { appAddToDb, appGetFromDb };
+
+const appRemoveFromDb = (id) => {
+  const appsId = appGetFromDb();
+  const remaining = appsId.filter((app) => app !== id);
+  localStorage.setItem("appId", JSON.stringify(remaining));
+};
+export { appAddToDb, appGetFromDb, appRemoveFromDb };
