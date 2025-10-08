@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../../src/assets/logo.png";
-import { Factory, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import "./Navbar.css";
 
 const menuItem = (

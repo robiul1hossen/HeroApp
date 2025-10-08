@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import App from "../App/App";
 
-const Apps = ({ data }) => {
-  //   const data = useLoaderData();
+const Apps = () => {
+  const data = useLoaderData();
   const [search, setSearch] = useState([]);
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ const Apps = ({ data }) => {
           Explore All Apps on the Market developed by us. We code for Millions
         </p>
       </div>
-      <div className="flex justify-between mb-6">
+      <div className="flex flex-col md:flex-row gap-5 justify-between mb-6">
         <h2 className="font-semibold text-2xl">({search.length}) Apps Found</h2>
         <input
           onChange={handleChange}
@@ -36,7 +36,7 @@ const Apps = ({ data }) => {
           className="input focus:outline-none outline-none border-none focus:border-none shadow-xl"
         />
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {search.map((app) => (
           <App app={app} key={app.id} />
         ))}
