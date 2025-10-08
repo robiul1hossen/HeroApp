@@ -8,6 +8,7 @@ import {
 } from "../../components/utility/storedApp";
 import { Download, Star } from "lucide-react";
 import Spinner from "../../components/Spinner/Spinner";
+import Swal from "sweetalert2";
 
 const Installation = () => {
   const data = useLoaderData();
@@ -22,10 +23,25 @@ const Installation = () => {
     setInstall(sorted);
   };
   const handleUninstall = (id) => {
-    appRemoveFromDb(id);
-    console.log("before log", install);
-    setInstall((prev) => prev.filter((app) => app.id !== id));
-    console.log("after log ", install);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Uninstall it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        appRemoveFromDb(id);
+        setInstall((prev) => prev.filter((app) => app.id !== id));
+        Swal.fire({
+          title: "Uninstall!",
+          text: "Your app uninstalled successfully.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   useEffect(() => {

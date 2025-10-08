@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { appAddToDb, appGetFromDb } from "../../components/utility/storedApp";
 import Swal from "sweetalert2";
+import { abbreviateNumber } from "js-abbreviation-number";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -56,7 +57,7 @@ const AppDetails = () => {
                 <Download className="mx-auto text-yellow-500" />
                 <p className="text-[#001931] my-1">Download</p>
                 <h2 className="text-[#001931] font-extrabold text-4xl">
-                  {filteredData.downloads}
+                  {abbreviateNumber(filteredData.downloads, 1)}
                 </h2>
               </div>
               <div className="text-center">
