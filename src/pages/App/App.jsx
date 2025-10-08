@@ -1,13 +1,21 @@
 import { abbreviateNumber } from "js-abbreviation-number";
 import { ArrowDown, Star } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate, useNavigation } from "react-router";
+import Spinner from "../../components/Spinner/Spinner";
 
 const App = ({ app }) => {
   const navigate = useNavigate();
-
+  const state = useNavigation();
   const handleDetails = (id) => {
     navigate(`/appDetails/${id}`);
   };
+  if (state.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <div
       onClick={() => handleDetails(app.id)}

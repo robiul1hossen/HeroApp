@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router";
 import App from "../App/App";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Apps = () => {
   const data = useLoaderData();
   const state = useNavigation();
   const [search, setSearch] = useState([]);
-  if (state.state === "loading") {
-    console.log("data loading");
-  } else {
-    console.log("data loaded");
-  }
 
   const handleChange = (e) => {
     const userInput = e.target.value.toLowerCase();
@@ -23,6 +19,13 @@ const Apps = () => {
     setSearch(data);
   }, [data]);
 
+  if (state.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <div className="w-11/12 mx-auto py-20">
       <div className="text-center">

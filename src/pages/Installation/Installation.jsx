@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { abbreviateNumber } from "js-abbreviation-number";
 
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigation } from "react-router";
 import {
   appGetFromDb,
   appRemoveFromDb,
 } from "../../components/utility/storedApp";
 import { Download, Star } from "lucide-react";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Installation = () => {
   const data = useLoaderData();
+  const state = useNavigation();
   const [install, setInstall] = useState([]);
   const handleSortAscending = () => {
     const sorted = [...install].sort((a, b) => a.downloads - b.downloads);
@@ -32,6 +34,14 @@ const Installation = () => {
     const installedApp = data.filter((app) => convertedId.includes(app.id));
     setInstall(installedApp);
   }, [data]);
+
+  if (state.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <div className="max-w-11/12 mx-auto">
       <div className="text-center">

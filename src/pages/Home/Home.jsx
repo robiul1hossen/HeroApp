@@ -1,10 +1,20 @@
 import Banner from "../../components/Banner/Banner";
+import Spinner from "../../components/Spinner/Spinner";
 import App from "../App/App";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigation } from "react-router";
 
 const Home = () => {
   const data = useLoaderData();
   const showData = data.slice(0, 8);
+  const state = useNavigation();
+
+  if (state.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div>
