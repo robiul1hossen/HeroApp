@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 const App = ({ app }) => {
   const navigate = useNavigate();
+
   const handleDetails = (id) => {
     navigate(`/appDetails/${id}`);
   };

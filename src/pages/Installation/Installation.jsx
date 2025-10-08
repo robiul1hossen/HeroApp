@@ -1,0 +1,99 @@
+import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router";
+import { appGetFromDb } from "../../components/utility/storedApp";
+import { Download, Star } from "lucide-react";
+
+const Installation = () => {
+  const data = useLoaderData();
+  const [install, setInstall] = useState([]);
+  const [sort, setSort] = useState("");
+
+  const handleSortAscending = () => {
+    const sorted = [...install].sort((a, b) => a.downloads - b.downloads);
+    setInstall(sorted);
+  };
+  const handleSortDescending = () => {
+    const sorted = [...install].sort((b, a) => a.downloads - b.downloads);
+    setInstall(sorted);
+  };
+
+  useEffect(() => {
+    const storedId = appGetFromDb();
+    const convertedId = storedId.map((id) => parseInt(id));
+    const installedApp = data.filter((app) => convertedId.includes(app.id));
+    setInstall(installedApp);
+  }, [data]);
+  console.log(install);
+  return (
+    <div className="max-w-11/12 mx-auto">
+      <div className="text-center">
+        <h2 className="text-[#001931] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          Your Installed Apps
+        </h2>
+        <p className="text-[#627382] text-xl w-1/2 mx-auto mt-4 mb-10">
+          Explore All Trending Apps on the Market developed by us
+        </p>
+      </div>
+      <div className="flex justify-between items-center">
+        <h2>{setInstall.length} Apps Installed</h2>
+        {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
+        {/* For TSX uncomment the commented types below */}
+        <button
+          className="btn"
+          popoverTarget="popover-1"
+          style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
+          Sort By Downloads
+        </button>
+
+        <ul
+          className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
+          popover="auto"
+          id="popover-1"
+          style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */}>
+          <li>
+            <a onClick={handleSortDescending}>High to Low</a>
+          </li>
+          <li>
+            <a onClick={handleSortAscending}>Low to High</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        {install.map((app) => (
+          <div key={app.id} className="my-3 ">
+            <div className="flex flex-col md:flex-row justify-between md:items-center bg-white rounded-lg p-4">
+              <div className="flex flex-col md:flex-row gap-10 md:items-center">
+                <div>
+                  <img className="w-[70px] h-[70px]" src={app.image} alt="" />
+                </div>
+                <div>
+                  <h2 className="text-[#001931] font-medium text-xl mb-4">
+                    {app.title}
+                  </h2>
+                  <div className="flex gap-5 items-center">
+                    <p className="flex gap-1 items-center text-[#00D390] text-sm">
+                      <Download /> {app.downloads}
+                    </p>
+                    <p className="text-[#FF8811] flex gap-1 text-sm">
+                      <Star fill={`#FF8811`} /> {app.ratingAvg}
+                    </p>
+                    <p className="text-[#627382] text-sm">
+                      Size: {app.size} MB
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer rounded-lg">
+                  Uninstall
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Installation;

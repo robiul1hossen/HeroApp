@@ -1,13 +1,24 @@
 import { Download, Star, ThumbsUp } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
+import { appAddToDb } from "../../components/utility/storedApp";
+import Swal from "sweetalert2";
 
 const AppDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
+  const [installed, setInstalled] = useState(false);
 
   const filteredData = data.find((app) => Number(app.id) === Number(id));
-  console.log(filteredData);
+  const handleInstall = (id) => {
+    Swal.fire({
+      title: "App Installed!",
+      text: "You clicked the button!",
+      icon: "success",
+    });
+    appAddToDb(id);
+    setInstalled(true);
+  };
 
   // console.log(data);
   return (
@@ -56,8 +67,11 @@ const AppDetails = () => {
               </div>
             </div>
           </div>
-          <button className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6">
-            Install Now
+          <button
+            disabled={installed}
+            onClick={() => handleInstall(filteredData.id)}
+            className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
+            {installed ? "Installed" : "Install Now"}
           </button>
         </div>
       </div>
