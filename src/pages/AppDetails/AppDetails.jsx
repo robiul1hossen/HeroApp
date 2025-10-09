@@ -4,6 +4,7 @@ import { useLoaderData, useParams } from "react-router";
 import { appAddToDb, appGetFromDb } from "../../components/utility/storedApp";
 import Swal from "sweetalert2";
 import { abbreviateNumber } from "js-abbreviation-number";
+import RatingChart from "../../components/RatingChart/RatingChart";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -32,10 +33,10 @@ const AppDetails = () => {
   const isInstalled = (id) => installed.includes(id);
   return (
     <div className="max-w-11/12 mx-auto">
-      <div className="flex gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <div>
           <img
-            className="h-[300px] w-[300px] bg-white px-4 py-3 mx-4 my-3 rounded-xl"
+            className="md:h-[300px] md:w-[300px] h-[100px] w-[100px] bg-white px-4 py-3 mx-4 my-3 rounded-xl"
             src={filteredData.image}
             alt=""
           />
@@ -52,7 +53,7 @@ const AppDetails = () => {
           </p>
           <hr className="w-full border border-slate-300 mb-7" />
           <div>
-            <div className="flex gap-10 items-center">
+            <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="text-center">
                 <Download className="mx-auto text-yellow-500" />
                 <p className="text-[#001931] my-1">Download</p>
@@ -84,6 +85,8 @@ const AppDetails = () => {
           </button>
         </div>
       </div>
+      <hr className="w-full border border-slate-300 my-10" />
+      <RatingChart filteredData={filteredData} />
     </div>
   );
 };
