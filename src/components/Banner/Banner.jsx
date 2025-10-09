@@ -16,7 +16,7 @@ const Banner = () => {
             </span>
             <span className="text-[#001931]"> Apps</span>
           </h1>
-          <p className="text-[#627382] w-1/2 mx-auto mt-4 mb-10">
+          <p className="text-[#627382] md:w-1/2 px-5 md:px-0 mx-auto mt-4 mb-10">
             At HERO.IO, we craft innovative apps designed to make everyday life
             simpler, smarter, and more exciting.Our goal is to turn your ideas
             into digital experiences that truly make an impact.
@@ -37,7 +37,7 @@ const Banner = () => {
             </Link>
           </div>
         </div>
-        <img className="mx-auto w-1/2" src={hero} alt="" />
+        <img className="mx-auto md:w-1/2 px-5" src={hero} alt="" />
       </div>
       <div className="bg-gradient-to-t from-[#632EE3] to-[#9F62F2] text-center py-20">
         <h2 className="font-semibold md:font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-10">

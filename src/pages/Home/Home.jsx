@@ -24,7 +24,7 @@ const Home = () => {
           <h2 className="text-[#001931] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
             Trending Apps
           </h2>
-          <p className="text-[#627382] text-xl w-1/2 mx-auto mt-4 mb-10">
+          <p className="text-[#627382] text-xl md:w-1/2 px-5 mx-auto mt-4 mb-10">
             Explore All Trending Apps on the Market developed by us
           </p>
         </div>

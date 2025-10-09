@@ -34,62 +34,64 @@ const AppDetails = () => {
   const isInstalled = (id) => installed.includes(id);
   return (
     <div className="max-w-11/12 mx-auto">
-      <div className="flex flex-col md:flex-row gap-10">
-        <div>
+      <div className="flex flex-row gap-10">
+        <div className="relative md:static">
           <img
-            className="md:h-[300px] md:w-[300px] h-[100px] w-[100px] bg-white px-4 py-3 mx-4 my-3 rounded-xl"
+            className="max-w-fit absolute md:static top-0 left-0 md:h-[300px] md:w-[300px] h-[100px] w-[100px] bg-white px-4 py-3 mx-4 my-3 rounded-xl"
             src={filteredData.image}
             alt=""
           />
         </div>
-        <div className="flex-1">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#001931] my-2">
+        <div className="flex-1 w-full ">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#001931] md:ml-0 ml-28 my-2">
             {filteredData.title}
           </h2>
-          <p className="font-semibold text-xl mt-2 mb-7">
+          <p className="font-semibold text-xl mt-2 mb-7 md:ml-0 ml-28">
             <span className="text-[#627382]">Developed By: </span>
             <span className="bg-gradient-to-t from-[#632EE3] to-[#9F62F2] inline-block text-transparent bg-clip-text">
               {filteredData.companyName}
             </span>
           </p>
-          <hr className="w-full border border-slate-300 mb-7" />
-          <div>
-            <div className="flex flex-col md:flex-row gap-10 items-center">
+          <hr className="w-full border border-slate-300 mb-7 md:ml-0 ml-28" />
+          <div className="">
+            <div className="flex flex-row gap-5 md:gap-10  items-center">
               <div className="text-center">
                 <Download className="mx-auto text-yellow-500" />
                 <p className="text-[#001931] my-1">Download</p>
-                <h2 className="text-[#001931] font-extrabold text-4xl">
+                <h2 className="text-[#001931] font-medium sm:font-semibold md:font-bold lg:font-extrabold text-2xl sm:text-3xl md:text-4xl">
                   {abbreviateNumber(filteredData.downloads, 1)}
                 </h2>
               </div>
               <div className="text-center">
                 <Star className="mx-auto text-yellow-500" fill="yellow" />
                 <p className="text-[#001931] my-1">Average Ratings</p>
-                <h2 className="text-[#001931] font-extrabold text-4xl">
+                <h2 className="text-[#001931] font-medium sm:font-semibold md:font-bold lg:font-extrabold text-2xl sm:text-3xl md:text-4xl">
                   {filteredData.ratingAvg}
                 </h2>
               </div>
               <div className="text-center">
                 <ThumbsUp className="mx-auto text-yellow-500" />
                 <p className="text-[#001931] my-1">Total Reviews</p>
-                <h2 className="text-[#001931] font-extrabold text-4xl">
+                <h2 className="text-[#001931] font-medium sm:font-semibold md:font-bold lg:font-extrabold text-2xl sm:text-3xl md:text-4xl">
                   {filteredData.reviews} K+
                 </h2>
               </div>
             </div>
           </div>
-          <button
-            disabled={isInstalled(filteredData.id)}
-            onClick={() => handleInstall(filteredData.id)}
-            className="bg-[#00D390] px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
-            {isInstalled(filteredData.id) ? "Installed" : "Install"}
-          </button>
+          <div className="w-full">
+            <button
+              disabled={isInstalled(filteredData.id)}
+              onClick={() => handleInstall(filteredData.id)}
+              className="bg-[#00D390] w-full md:w-fit px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
+              {isInstalled(filteredData.id) ? "Installed" : "Install"}
+            </button>
+          </div>
         </div>
       </div>
       <hr className="w-full border border-slate-300 my-10" />
       <RatingChart filteredData={filteredData} />
       <div>
-        <p>
+        <p className="my-10">
           <span className="text-[#001931] font-semibold text-xl">
             Description:
           </span>
