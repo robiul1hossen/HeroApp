@@ -11,6 +11,7 @@ const AppDetails = () => {
   const data = useLoaderData();
   const [installed, setInstalled] = useState([]);
 
+  console.log(data);
   const filteredData = data.find((app) => Number(app.id) === Number(id));
 
   const handleInstall = (id) => {
@@ -87,6 +88,14 @@ const AppDetails = () => {
       </div>
       <hr className="w-full border border-slate-300 my-10" />
       <RatingChart filteredData={filteredData} />
+      <div>
+        <p>
+          <span className="text-[#001931] font-semibold text-xl">
+            Description:
+          </span>
+          <span> {filteredData.description}</span>
+        </p>
+      </div>
     </div>
   );
 };
