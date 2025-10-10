@@ -8,19 +8,19 @@ const Apps = () => {
   const data = useLoaderData();
   const state = useNavigation();
   const [search, setSearch] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setSearch(data);
   }, [data]);
   const handleSearch = (e) => {
-    setLoading(true);
+    // setLoading(true);
     const userInput = e.target.value.toLowerCase();
     const searchedData = data.filter((app) =>
       app.title.toLowerCase().includes(userInput)
     );
+    setLoading(true);
     setSearch(searchedData);
-    setLoading(false);
   };
 
   if (state.state === "loading") {
@@ -30,6 +30,7 @@ const Apps = () => {
       </div>
     );
   }
+  console.log(loading);
   const leng = search.length;
   return (
     <div className="w-11/12 mx-auto py-20">
@@ -54,7 +55,7 @@ const Apps = () => {
           />
         </div>
         <div>
-          {loading === false ? (
+          {loading ? (
             <div>
               {leng ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
