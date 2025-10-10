@@ -8,17 +8,20 @@ const Apps = () => {
   const data = useLoaderData();
   const state = useNavigation();
   const [search, setSearch] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  useEffect(() => {
+    setSearch(data);
+  }, [data]);
+  const handleSearch = (e) => {
+    setLoading(true);
     const userInput = e.target.value.toLowerCase();
     const searchedData = data.filter((app) =>
       app.title.toLowerCase().includes(userInput)
     );
     setSearch(searchedData);
+    setLoading(false);
   };
-  useEffect(() => {
-    setSearch(data);
-  }, [data]);
 
   if (state.state === "loading") {
     return (
@@ -44,28 +47,38 @@ const Apps = () => {
             ({search.length}) Apps Found
           </h2>
           <input
-            onChange={handleChange}
+            onChange={handleSearch}
             type="search"
             placeholder="Find Apps"
             className="input focus:outline-none outline-none border-none focus:border-none shadow-xl"
           />
         </div>
-        {leng ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {search.map((app) => (
-              <App app={app} key={app.id} />
-            ))}
-          </div>
-        ) : (
-          <div className="flex justify-center items-center">
+        <div>
+          {loading === false ? (
             <div>
-              <img className="w-1/2 mx-auto mb-5" src={errorImg} alt="" />
-              <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center">
-                OPPS!! APP NOT FOUND
-              </h2>
+              {leng ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                  {search.map((app) => (
+                    <App app={app} key={app.id} />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex justify-center items-center">
+                  <div>
+                    <img className="w-1/2 mx-auto mb-5" src={errorImg} alt="" />
+                    <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center">
+                      OPPS!! APP NOT FOUND
+                    </h2>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex justify-center items-center h-screen">
+              <Spinner />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
