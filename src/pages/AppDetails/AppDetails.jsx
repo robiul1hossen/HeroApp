@@ -31,10 +31,6 @@ const AppDetails = () => {
     setInstalled((prev) => [...prev, id]);
   };
 
-  // if (data.find((app) => Number(app.id) !== Number(id))) {
-  //   console.log("data nai");
-  // }
-
   useEffect(() => {
     const savedIds = appGetFromDb();
     setInstalled(savedIds);
@@ -44,7 +40,7 @@ const AppDetails = () => {
   return (
     <div className="max-w-11/12 mx-auto">
       {data.find((app) => Number(app.id) === Number(id)) ? (
-        <div>
+        <div className="mt-6">
           <div className="flex flex-row gap-10">
             <div className="relative md:static">
               <img
@@ -93,8 +89,12 @@ const AppDetails = () => {
                 <button
                   disabled={isInstalled(filteredData.id)}
                   onClick={() => handleInstall(filteredData.id)}
-                  className="bg-[#00D390] w-full md:w-fit px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
-                  {isInstalled(filteredData.id) ? "Installed" : "Install"}
+                  className="bg-gradient-to-t from-[#632EE3] to-[#9F62F2] rounded-lg w-full md:w-fit px-5 py-3 font-semibold text-white text-xl mt-6 cursor-pointer">
+                  {isInstalled(filteredData.id) ? (
+                    "Installed"
+                  ) : (
+                    <span>Install Now ({filteredData.size}MB)</span>
+                  )}
                 </button>
               </div>
             </div>

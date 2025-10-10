@@ -7,14 +7,14 @@ const Banner = () => {
     <div>
       <div className="pt-20 bg-[#f5f5f5]">
         <div className="text-center ">
-          <h1 className="text-[#001931] text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-semibold md:font-bold">
+          <h1 className="font-[parata] text-[#001931] text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-semibold md:font-bold">
             We Build
           </h1>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-semibold md:font-bold">
+          <h1 className="font-[parata] text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-semibold md:font-bold">
             <span className="bg-gradient-to-t from-[#632EE3] to-[#9F62F2] inline-block text-transparent bg-clip-text">
               Productive
             </span>
-            <span className="text-[#001931]"> Apps</span>
+            <span className="text-[#001931] font-[parata]"> Apps</span>
           </h1>
           <p className="text-[#627382] md:w-1/2 px-5 md:px-0 mx-auto mt-4 mb-10">
             At HERO.IO, we craft innovative apps designed to make everyday life
@@ -40,7 +40,7 @@ const Banner = () => {
         <img className="mx-auto md:w-1/2 px-5" src={hero} alt="" />
       </div>
       <div className="bg-gradient-to-t from-[#632EE3] to-[#9F62F2] text-center py-20">
-        <h2 className="font-semibold md:font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-10">
+        <h2 className="font-[parata] font-semibold md:font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-10">
           Trusted by Millions, Built for You
         </h2>
         <div className="flex flex-col md:flex-row gap-10 md:gap-0 justify-around items-center">

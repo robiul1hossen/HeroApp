@@ -61,7 +61,7 @@ const Installation = () => {
   return (
     <div className="max-w-11/12 mx-auto">
       <div className="text-center">
-        <h2 className="text-[#001931] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+        <h2 className="text-[#001931] font-[parata] mt-10 font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
           Your Installed Apps
         </h2>
         <p className="text-[#627382] text-xl w-1/2 mx-auto mt-4 mb-10">

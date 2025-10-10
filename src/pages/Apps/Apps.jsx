@@ -36,7 +36,7 @@ const Apps = () => {
     <div className="w-11/12 mx-auto py-20">
       <div>
         <div className="text-center">
-          <h2 className="text-[#001931] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="text-[#001931] font-[parata] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
             Our All Applications
           </h2>
           <p className="text-[#627382] text-xl px-5 md:w-1/2 mx-auto mt-4 mb-10">

@@ -48,15 +48,21 @@ const Navbar = () => {
           </div>
           <Link to="/" className=" flex gap-2 items-center">
             <img className="w-[30px] h-[30px]" src={logo} alt="" />
-            <span className="font-bold"> Hero.Io</span>
+            <span className="font-bold text-xl bg-gradient-to-t from-[#632EE3] to-[#9F62F2] inline-block text-transparent bg-clip-text">
+              {" "}
+              Hero.Io
+            </span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal gap-6 ">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <Link className="btn" to="https://github.com/robiul1hossen">
-            <Github className="" /> Contribute
+          <Link
+            className="px-3 py-2 rounded-lg bg-gradient-to-t from-[#632EE3] to-[#9F62F2]  flex gap-1 text-white font-semibold"
+            to="https://github.com/robiul1hossen">
+            <Github className="text-white" fill="white" stroke="white" />{" "}
+            Contribute
           </Link>
         </div>
       </div>

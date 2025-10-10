@@ -21,7 +21,7 @@ const Home = () => {
       <Banner />
       <div>
         <div className="text-center mt-20">
-          <h2 className="text-[#001931] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="text-[#001931] font-[parata] font-semibold md:font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
             Trending Apps
           </h2>
           <p className="text-[#627382] text-xl md:w-1/2 px-5 mx-auto mt-4 mb-10">
@@ -35,7 +35,9 @@ const Home = () => {
         </div>
         <div className="text-center my-10">
           <Link to="/apps">
-            <button className="btn btn-outline btn-primary">Show All</button>
+            <button className="px-3 py-2 rounded-lg bg-gradient-to-t from-[#632EE3] to-[#9F62F2] cursor-pointer text-white font-semibold">
+              Show All
+            </button>
           </Link>
         </div>
       </div>
